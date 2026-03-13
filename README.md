@@ -1,36 +1,94 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# TorchLean Website
+
+The official website and documentation for [TorchLean](https://github.com/nktkt/torchlean) — a mechanized framework for formalizing neural networks in Lean 4.
+
+**Live:** [https://torchlean.org](https://torchlean.org)
+
+## Tech Stack
+
+- [Next.js](https://nextjs.org/) 16 (App Router)
+- [shadcn/ui](https://ui.shadcn.com/) components
+- [Tailwind CSS](https://tailwindcss.com/) v4
+- [Motion](https://motion.dev/) (animations)
+- [Bun](https://bun.sh/) (package manager & runtime)
+- [Cloudflare Workers](https://workers.cloudflare.com/) (deployment via `@cloudflare/next-on-pages`)
 
 ## Getting Started
 
-First, run the development server:
-
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+# Install dependencies
+bun install
+
+# Start dev server
+bun run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+site/
+├── src/
+│   ├── app/
+│   │   ├── page.tsx                    # Landing page
+│   │   ├── layout.tsx                  # Root layout
+│   │   ├── globals.css                 # Theme (dark, orange accent)
+│   │   └── docs/                       # Documentation (13 pages)
+│   │       ├── page.tsx                # Introduction
+│   │       ├── layout.tsx              # Docs layout with sidebar
+│   │       ├── getting-started/
+│   │       ├── frontend/{tensor,layers,graph}/
+│   │       ├── runtime/
+│   │       ├── verification/{ibp,crown,alpha-beta-crown,robustness,attacks}/
+│   │       ├── applications/
+│   │       └── benchmarks/
+│   └── components/
+│       ├── ui/                         # shadcn components
+│       ├── sections/                   # Landing page sections
+│       └── docs/                       # Docs components (sidebar, code-block)
+├── wrangler.toml                       # Cloudflare Workers config
+└── package.json
+```
 
-## Learn More
+## Build & Deploy
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+# Build for Cloudflare Pages
+bun run pages:build
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+# Deploy
+bun run pages:deploy
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Landing Page Sections
 
-## Deploy on Vercel
+- **Hero** — Gradient title, stats, CTA buttons (GitHub, Docs, Paper)
+- **Features** — 6 feature cards with icons and motion animations
+- **Architecture** — Interactive module tree mapping to paper sections
+- **Verification Methods** — IBP / CROWN / α,β-CROWN comparison cards
+- **Theorems** — 10 formal theorems with tags
+- **Getting Started** — Installation steps and demo output
+- **Footer** — BibTeX citation and links
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Documentation Pages
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+| Route | Content |
+|-------|---------|
+| `/docs` | Introduction & project overview |
+| `/docs/getting-started` | Installation, demo, project structure |
+| `/docs/frontend/tensor` | Tensor API reference |
+| `/docs/frontend/layers` | Layer definitions & Network construction |
+| `/docs/frontend/graph` | Computation graph IR & execution modes |
+| `/docs/runtime` | IEEE-754 Float32, arithmetic, three-level semantics |
+| `/docs/verification/ibp` | Interval Bound Propagation |
+| `/docs/verification/crown` | CROWN/LiRPA backward bounds |
+| `/docs/verification/alpha-beta-crown` | α,β-CROWN with branch-and-bound |
+| `/docs/verification/robustness` | Robustness definitions & certificates |
+| `/docs/verification/attacks` | FGSM/PGD attacks & verification tactics |
+| `/docs/applications` | PINN, Lyapunov stability, Universal Approximation |
+| `/docs/benchmarks` | ACAS Xu, MNIST/CIFAR-10, VNN-COMP |
+
+## License
+
+MIT
