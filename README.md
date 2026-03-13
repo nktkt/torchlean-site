@@ -11,7 +11,7 @@ The official website and documentation for [TorchLean](https://github.com/nktkt/
 - [Tailwind CSS](https://tailwindcss.com/) v4
 - [Motion](https://motion.dev/) (animations)
 - [Bun](https://bun.sh/) (package manager & runtime)
-- [Cloudflare Workers](https://workers.cloudflare.com/) (deployment via `@cloudflare/next-on-pages`)
+- [Cloudflare Workers](https://workers.cloudflare.com/) (deployment via `@opennextjs/cloudflare`)
 
 ## Getting Started
 
@@ -54,11 +54,11 @@ site/
 ## Build & Deploy
 
 ```bash
-# Build for Cloudflare Pages
-bun run pages:build
+# Build for Cloudflare Workers
+bun run cf:build
 
 # Deploy
-bun run pages:deploy
+bun run cf:deploy
 ```
 
 ## Landing Page Sections
