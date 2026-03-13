@@ -6,7 +6,6 @@ import { Theorems } from "@/components/sections/theorems";
 import { GettingStarted } from "@/components/sections/getting-started";
 import { Footer } from "@/components/sections/footer";
 
-export const runtime = "edge";
 
 export default function Home() {
   return (

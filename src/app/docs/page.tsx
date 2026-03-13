@@ -1,6 +1,5 @@
 import { CodeBlock } from "@/components/docs/code-block";
 
-export const runtime = "edge";
 
 export default function DocsIntroduction() {
   return (
